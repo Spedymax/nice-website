@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Выбери место</title>
+</head>
+
+<body>
+<main class="container">
+    <section>
+        <h2>Шаг 2: Выбери место/активность</h2>
+        <p>Выбери место или активность в котором ты бы хотела провести свидание</p>
+
+        <div class="place-options">
+            <figure onclick="selectPlace('Cafe', 'cafe')">
+                <img id="cafe" src="images/cafe.jpg" alt="Cafe" class="place-image" />
+                <figcaption>Кафе</figcaption>
+            </figure>
+            <figure onclick="selectPlace('Restaurant', 'restaurant')">
+                <img id="restaurant" src="images/restaurant.webp" alt="Restaurant" class="place-image" />
+                <figcaption>Ресторан</figcaption>
+            </figure>
+            <figure onclick="selectPlace('Museum', 'museum')">
+                <img id="museum" src="images/museum.jpg" alt="Museum" class="place-image" />
+                <figcaption>Музей</figcaption>
+            </figure>
+            <figure onclick="selectPlace('Cinema', 'cinema')">
+                <img id="cinema" src="images/cinema.jpg" alt="Cinema" class="place-image" />
+                <figcaption>Кино/Театр</figcaption>
+            </figure>
+            <figure onclick="selectPlace('Bike', 'bike')">
+                <img id="bike" src="images/bike.jpg" alt="Bike" class="place-image" />
+                <figcaption>Велопрогулка</figcaption>
+            </figure>
+            <figure onclick="selectPlace('Piknik', 'piknik')">
+                <img id="piknik" src="images/piknik.jpg" alt="Piknik" class="place-image" />
+                <figcaption>Пикник</figcaption>
+            </figure>
+            <figure onclick="selectPlace('Netflix & Chill', 'netflix')">
+                <img id="netflix" src="images/netflix.jpg" alt="Netflix & Chill" class="place-image" />
+                <figcaption>Netflix & Chill</figcaption>
+            </figure>
+            <figure onclick="selectPlace('Unknown', 'unknown')">
+                <img id="unknown" src="images/unknown.jpg" alt="Unknown" class="place-image" />
+                <figcaption>Напишу свой вариант позже</figcaption>
+            </figure>
+        </div>
+
+        <div class="button-container">
+            <button class="btn back" onclick="window.location.href='step1.html'">Назад</button>
+            <button class="btn continue" onclick="goToNextStep()">Продолжить</button>
+        </div>
+    </section>
+</main>
+
+<script>
+    let selectedPlace = null;
+
+    function selectPlace(place, elementId) {
+        selectedPlace = place;
+
+        // Remove selected class from all items
+        document.querySelectorAll('img').forEach(item => {
+            item.classList.remove('selected');
+        });
+
+        // Add selected class to the chosen item
+        document.getElementById(elementId).classList.add('selected');
+    }
+
+    function goToNextStep() {
+        if (selectedPlace) {
+            localStorage.setItem('selectedPlace', selectedPlace);
+            window.location.href = 'step3.html';
+        } else {
+            alert('Please select a place before continuing!');
+        }
+    }
+</script>
+</body>
+
+</html>

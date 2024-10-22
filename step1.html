@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Выбери город</title>
+</head>
+
+<body>
+<main class="container">
+  <section>
+    <h2>Шаг 1: Выбери город</h2>
+    <p>Выбери город где пройдёт наше идеальное свидание</p>
+
+    <div class="city-options">
+      <figure onclick="selectCity('Copenhagen', 'copenhagen')">
+        <img id="copenhagen" src="images/copenhagen.jpg" alt="Copenhagen" class="city-image" />
+        <figcaption>Копенгаген</figcaption>
+      </figure>
+      <figure onclick="selectCity('Wien', 'wien')">
+        <img id="wien" src="images/wien.jpg" alt="Wien" class="city-image" />
+        <figcaption>Вена</figcaption>
+      </figure>
+      <figure onclick="selectCity('Unknown', 'unknown')">
+        <img id="unknown" src="images/unknown.jpg" alt="Later" class="city-image" />
+        <figcaption>Напишу свой вариант позже</figcaption>
+      </figure>
+    </div>
+
+    <div class="button-container">
+      <button class="btn back" onclick="window.location.href='index.html'">Назад</button>
+      <button class="btn continue" onclick="goToNextStep()">Продолжить</button>
+    </div>
+  </section>
+</main>
+
+<script>
+  let selectedCity = null;
+
+  function selectCity(city, elementId) {
+    selectedCity = city;
+
+    // Remove selected class from all items
+    document.querySelectorAll('img').forEach(item => {
+      item.classList.remove('selected');
+    });
+
+    // Add selected class to the chosen item
+    document.getElementById(elementId).classList.add('selected');
+  }
+
+  function goToNextStep() {
+    if (selectedCity) {
+      localStorage.setItem('selectedCity', selectedCity);
+      window.location.href = 'step2.html';
+    } else {
+      alert('Please select a city before continuing!');
+    }
+  }
+</script>
+</body>
+
+</html>

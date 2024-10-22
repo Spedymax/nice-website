@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Финал</title>
+</head>
+
+<body>
+<main class="container">
+    <section>
+        <h2 class = 'final'>Финал</h2>
+        <p class = 'text1'>Вот детали идеального свидания которое ты спланировала:</p>
+        <p class = 'text2'>Нажми кнопку готово, и приглашение будет отправлено Максу!</p>
+
+        <div class="summary-list">
+            <h3>City:</h3>
+            <p id="chosen-city"></p>
+
+            <h3>Type of Place:</h3>
+            <p id="chosen-place"></p>
+
+            <h3>Date:</h3>
+            <p id="chosen-date"></p>
+
+            <h3>Gift List:</h3>
+            <p id="gift-list-summary"></p>
+        </div>
+
+        <div class="button-container">
+            <button class="btn continue" onclick="showThankYou()">Готово!</button>
+        </div>
+
+        <div id="thank-you-message" style="display:none; margin-top: 40px;">
+            <h2 style="color: deeppink">Спасибо, я люблю тебя!!!❤️</h2>
+        </div>
+    </section>
+</main>
+
+<script>
+    // Replace with your bot token and chat ID
+    const botToken = '1469789335:AAHtRcVSuRvphCppLp57jD14kUY-uUhG99o';
+    const chatId = '741542965';
+
+    // Display collected data
+    const city = localStorage.getItem('selectedCity');
+    const place = localStorage.getItem('selectedPlace');
+    const date = localStorage.getItem('selectedDate');
+    const giftList = localStorage.getItem('giftList');
+
+    document.getElementById('chosen-city').textContent = city;
+    document.getElementById('chosen-place').textContent = place;
+    document.getElementById('chosen-date').textContent = date;
+    document.getElementById('gift-list-summary').textContent = giftList;
+
+    // Function to send Telegram message
+    function sendTelegramMessage() {
+        const message = '🎉 Машрумчик пригласила тебя на свидание!!!';
+        const message2 = `Вот детали:\n\n` +
+            `City: ${city}\n` +
+            `Place: ${place}\n` +
+            `Date: ${date}\n` +
+            `Gifts: ${giftList}`;
+
+        const url2 = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message2)}`;
+        const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                if (data.ok) {
+                    console.log('Message sent successfully');
+                } else {
+                    console.error('Error sending message:', data.description);
+                }
+            })
+            .catch(error => console.error('Fetch error:', error));
+        fetch(url2)
+            .then(response => response.json())
+            .then(data => {
+                if (data.ok) {
+                    console.log('Message sent successfully');
+                } else {
+                    console.error('Error sending message:', data.description);
+                }
+            })
+            .catch(error => console.error('Fetch error:', error));
+    }
+
+    // Show Thank You message and close page after 10 seconds
+    function showThankYou() {
+        document.querySelector('.summary-list').style.display = 'none';
+        document.querySelector('.final').style.display = 'none';
+        document.querySelector('.text1').style.display = 'none';
+        document.querySelector('.text2').style.display = 'none';
+        document.querySelector('.button-container').style.display = 'none';
+        document.getElementById('thank-you-message').style.display = 'block';
+
+        // Send the message to Telegram
+        sendTelegramMessage();
+    }
+</script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Выбери дату</title>
+</head>
+
+<body>
+<main class="container">
+  <section>
+    <h2>Шаг 3: Выбери дату</h2>
+    <p>Выбери дату для нашего особенного дня вместе</p>
+
+    <div class="calendar">
+      <input type="date" id="date-picker" name="date-picker">
+    </div>
+
+    <div class="button-container">
+      <button class="btn back" onclick="window.location.href='step2.html'">Назад</button>
+      <button class="btn continue" onclick="goToNextStep()">Продолжить</button>
+    </div>
+  </section>
+</main>
+
+<script>
+  function goToNextStep() {
+    const selectedDate = document.getElementById('date-picker').value;
+    if (selectedDate) {
+      localStorage.setItem('selectedDate', selectedDate);
+      window.location.href = 'step4.html';
+    } else {
+      alert('Please select a date before continuing!');
+    }
+  }
+</script>
+</body>
+
+</html>

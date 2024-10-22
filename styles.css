@@ -1,27 +1,213 @@
+body {
+    background-color: #ffe6f2;
+    color: #ff69b4;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+}
+
+main {
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #29b5ce;
+}
+
+p {
+    font-size: 1.25rem;
+    margin-bottom: 40px;
+    color: #29b5ce;
+}
+
+.button-container {
+    display: flex;
+    gap: 20px;
+}
+
+.btn {
+    padding: 15px 30px;
+    border-radius: 50px;
+    border: none;
+    background-color: #ff1493;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.back{
+    background-color: black;
+}
+
+.btn:hover {
+    background-color: #ff85b5;
+}
+
+.btn:disabled {
+    background-color: #ffd1e8;
+    cursor: not-allowed;
+}
+
 canvas {
     position: absolute;
     top: 0;
     left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background-color: #ffe6f2;
 }
-p {
-    margin: 0 0;
-    position: absolute;
-    font: 16px Verdana;
-    color: #eee;
-    height: 25px;
-    top: calc(100vh - 30px);
-    text-shadow: 0 0 2px white;
+.city-options {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-bottom: 40px;
 }
-p a {
-    text-decoration: none;
-    color: #aaa;
+
+.delay{
+    margin-top: 50%;
 }
-span {
-    font-size: 11px;
+
+figure {
+    margin: 0;
+    text-align: center;
+    width: 60%;
+    height: 100%;
+
+
 }
-p > a:first-of-type {
-    font-size: 20px;
+
+.city-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-top: 20px;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #ffe6f2; /* To make sure it doesn't look cut */
 }
-body {
-    overflow: hidden;
+
+.city-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+}
+
+figcaption {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 10px;
+    color: #ff69b4;
+}
+
+/* Extending from your current styles */
+.place-options {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.place-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-top: 20px;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #ffe6f2;
+}
+
+.place-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+}
+
+/* Adding styles for the calendar input field */
+.calendar {
+    margin-bottom: 40px;
+}
+
+input[type="date"] {
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #ff69b4;
+    background-color: #ffe6f2;
+    color: #ff1493;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+input[type="date"]:focus {
+    border-color: #ff1493;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+    outline: none;
+}
+
+/* Styling for the textarea input */
+.gift-input {
+    margin-bottom: 40px;
+}
+
+textarea {
+    width: 100%;
+    max-width: 500px;
+    padding: 15px;
+    border-radius: 10px;
+    border: 2px solid #ff69b4;
+    background-color: #ffe6f2;
+    color: #ff1493;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    resize: none;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+textarea:focus {
+    border-color: #ff1493;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+    outline: none;
+}
+
+/* Styling for the summary list */
+.summary-list {
+    text-align: left;
+    max-width: 500px;
+    margin-bottom: 40px;
+}
+
+.summary-list h3 {
+    color: #29b5ce;
+    margin-bottom: 5px;
+    font-size: 1.5rem;
+}
+
+.summary-list p {
+    margin-bottom: 20px;
+    font-size: 1.25rem;
+    color: #ff69b4;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.button-container {
+    display: flex;
+    gap: 20px;
+}
+
+.selected {
+    border: 3px solid #ff69b4;
+    padding: 10px;
+    border-radius: 50%; /* Keep the circle shape */
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3); /* Add a shadow */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }

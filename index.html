@@ -7,8 +7,16 @@
     <title>Happy birthday</title>
 </head>
 <body>
-<!-- Tiktok meowish -->
 <canvas id="c"></canvas>
 <script src="code.js"></script>
+<button class="btn continue delay" onclick="window.location.href='step1.html'" id = 'button'>Продолжить</button>
+<script>
+    document.getElementById("button").style.display = "none";
+
+    function showStuff() {
+        document.getElementById("button").style.display = "inline";
+    }
+    setTimeout(showStuff, 10000);
+</script>
 </body>
 </html>

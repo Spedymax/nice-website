@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Выбери подарок</title>
+</head>
+
+<body>
+<main class="container">
+    <section>
+        <h2>Шаг 4: Выбери подарок</h2>
+        <p>Напиши что бы ты хотела получить на этот праздник:)</p>
+        <p> Также укажи город и место/активность если ты не выбрала их ранее.</p>
+
+        <div class="gift-input">
+            <textarea id="gift-list" name="gift-list" rows="5" placeholder="Не стесняйся, пиши все свои пожелания..."></textarea>
+        </div>
+
+        <div class="button-container">
+            <button class="btn back" onclick="window.location.href='step3.html'">Назад</button>
+            <button class="btn continue" onclick="goToNextStep()">Продолжить</button>
+        </div>
+    </section>
+</main>
+
+<script>
+    function goToNextStep() {
+        const giftList = document.getElementById('gift-list').value;
+        if (giftList) {
+            localStorage.setItem('giftList', giftList);
+            window.location.href = 'summary.html';
+        } else {
+            alert('Напиши что бы ты хотела получить!');
+        }
+    }
+</script>
+</body>
+
+</html>
