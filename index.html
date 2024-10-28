@@ -9,14 +9,21 @@
 <body>
 <canvas id="c"></canvas>
 <script src="code.js"></script>
-<button class="btn continue delay" onclick="window.location.href='step1.html'" id = 'button'>Продолжить</button>
+<button class="btn" onclick="window.location.href='step1.html'" id="continue-button">Продолжить</button>
 <script>
-    document.getElementById("button").style.display = "none";
+    const button = document.getElementById('continue-button');
 
-    function showStuff() {
-        document.getElementById("button").style.display = "inline";
-    }
-    setTimeout(showStuff, 10000);
+    // Show button after animation
+    setTimeout(() => {
+        button.classList.add('visible');
+    }, 10000);
+
+    // Prevent button from being clickable before it's visible
+    button.addEventListener('click', (e) => {
+        if (!button.classList.contains('visible')) {
+            e.preventDefault();
+        }
+    });
 </script>
 </body>
 </html>
